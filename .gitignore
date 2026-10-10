@@ -1,0 +1,27 @@
+# Publish only application files. Existing personal documents, databases and logs stay local.
+*
+!.gitignore
+!app.py
+!core.py
+!requirements.txt
+!README.md
+!start.cmd
+!static/
+static/*
+!static/app.js
+!static/style.css
+!static/favicon.svg
+!templates/
+templates/*
+!templates/index.html
+!tests/
+tests/*
+!tests/test_source.py
+!.github/
+.github/*
+!.github/workflows/
+.github/workflows/*
+!.github/workflows/test.yml
+
+!VALIDATION.md
+!screenshot.png

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#205ae8"><title>SourceDesk · 有据可查</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/style.css"><script src="/static/app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#question">跳到提问</a>
+<header class="topbar"><a class="brand" href="/" aria-label="SourceDesk 首页"><span class="mark" aria-hidden="true">S<span>↗</span></span>SourceDesk<span class="brand-sub">有据可查</span></a><div class="connection" id="connection">连接本地资料库…</div></header>
+<main>
+  <section class="heading"><div><p class="eyebrow">YOUR SOURCES. CLEAR ANSWERS.</p><h1>把问题，交给你的资料<span>。</span></h1><p>先找到原文，再生成回答。每一条引用，都可以展开核对。</p></div><div class="local-pill"><span aria-hidden="true">◉</span> 资料保存在本机</div></section>
+  <p class="global-message" id="global-message" role="status" aria-live="polite" hidden></p>
+  <div class="workspace">
+    <aside class="library" aria-labelledby="library-heading">
+      <div class="panel-title"><div><span class="section-number">01</span><h2 id="library-heading">我的资料</h2></div><span id="document-count" class="count">0 份</span></div>
+      <details class="import-panel" open><summary>添加资料 <span aria-hidden="true">＋</span></summary>
+        <form id="document-form">
+          <div class="import-tools"><label class="file-button">导入 TXT / MD<input id="file" type="file" accept=".txt,.md,text/plain,text/markdown"></label><button id="sample" type="button" class="text-button">试用虚构资料</button></div>
+          <label for="title">资料标题</label><input id="title" maxlength="120" required placeholder="例如：差旅报销规则">
+          <label for="content">原文内容</label><textarea id="content" rows="7" maxlength="100000" required placeholder="粘贴文字，或从文件导入…"></textarea>
+          <div class="input-meta"><span>UTF-8 · 最多 10 万字</span><span id="content-count">0 字</span></div>
+          <button id="save-document" class="primary full" type="submit">保存到资料库 <span aria-hidden="true">↗</span></button>
+          <p id="import-message" class="inline-message" role="status" aria-live="polite"></p>
+        </form>
+      </details>
+      <div id="document-list" class="document-list"><p class="empty-small">还没有资料，从上方添加第一份。</p></div>
+      <p class="library-note">仅检索不会调用模型。添加资料也不会发送给 DeepSeek。</p>
+    </aside>
+    <div class="answer-workspace">
+      <section class="question-panel" aria-labelledby="ask-heading"><div class="panel-title"><div><span class="section-number">02</span><h2 id="ask-heading">问一个具体问题</h2></div><span class="model-label">DeepSeek</span></div>
+        <form id="question-form"><label class="sr-only" for="question">你的问题</label><textarea id="question" rows="3" maxlength="1000" required placeholder="例如：报销需要哪些材料，多久内提交？"></textarea><div class="question-footer"><p id="privacy-hint">AI 回答会将问题和检索到的片段发送至 DeepSeek，可能产生费用。请勿导入无权分享的机密资料。</p><div class="question-actions"><button id="search" type="button" class="secondary">仅检索原文</button><button id="ask" type="submit" class="primary" disabled>依据资料回答 <span aria-hidden="true">↗</span></button></div></div></form>
+      </section>
+      <section class="answer-panel" aria-labelledby="answer-heading"><div class="panel-title answer-title"><div><span class="section-number">03</span><h2 id="answer-heading">回答与依据</h2></div><div class="export-actions" id="export-actions" hidden><a id="export-md" class="small-link" href="#">Markdown ↓</a><a id="export-json" class="small-link" href="#">JSON ↓</a></div></div>
+        <div id="answer" class="answer-content" aria-live="polite"><div class="empty-state"><span aria-hidden="true">“</span><h3>好的回答，从原文开始。</h3><p>保存资料，然后提问。<br>资料没有给出的答案，会明确告诉你。</p></div></div>
+        <div id="sources" class="sources"></div>
+      </section>
+      <section class="history-panel" aria-labelledby="history-heading"><div class="panel-title"><div><span class="section-number">04</span><h2 id="history-heading">最近问答</h2></div><span class="subtle">保留回答与当时的引用</span></div><div id="history-list" class="history-list"><p class="empty-small">完成提问后，记录会保存在这里。</p></div></section>
+    </div>
+  </div>
+  <footer><span>SourceDesk <span class="footer-divider">/</span> 有据可查，也需要你的判断。</span><span>本地单用户工作台</span></footer>
+</main>
+<dialog id="document-dialog" aria-labelledby="document-dialog-title"><div class="dialog-header"><h2 id="document-dialog-title">资料原文</h2><button id="close-document" type="button" class="icon-button" aria-label="关闭资料">×</button></div><div class="dialog-body"><p id="document-detail-note" class="subtle"></p><pre id="document-detail"></pre></div><div class="dialog-actions"><button id="download-document" type="button" class="secondary">下载原文</button><button id="delete-document" type="button" class="danger">删除资料</button></div></dialog>
+<dialog id="confirm-dialog" aria-labelledby="confirm-title"><form method="dialog"><h2 id="confirm-title">确认操作</h2><p id="confirm-text"></p><div class="dialog-actions"><button value="cancel" class="secondary">取消</button><button value="confirm" class="primary">确认</button></div></form></dialog>
+<noscript><p class="noscript">此工作台需要启用 JavaScript 才能导入、检索和查看回答。</p></noscript>
+</body></html>
